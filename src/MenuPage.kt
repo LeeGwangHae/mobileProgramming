@@ -12,6 +12,7 @@ class MenuPage {
         println("1. Find By Game ID")
         println("2. Find By Ranking")
         println("#########################")
+        print("Input menu number want to use : ")
         var menuNum = scan.nextInt()
 
         when(menuNum){
@@ -34,33 +35,35 @@ class MenuPage {
         }
     }
     fun menuTwo(){
-
-        val user = userInfo.searchByGameID()
-        val ranking = user?.ranking
-
-        if(user != null){
-            println("$user's Ranking : $ranking")
-        }else{
-            println("User No Exist")
-        }
+        userInfo.sortByWin(userInfo.readFile())
     }
 
     fun menuThree(){
-        val user = userInfo.searchByGameID()
-        val rating = user?.tier
-
-        if(user != null){
-            println("$user's Tier : Challenger $rating")
-        }else{
-            println("User No Exist")
-        }
+        userInfo.sortByWinrate(userInfo.readFile())
     }
 
     fun menuFour(){
+        userInfo.divideGamer()
+
+        print("Input team : ")
+        scan.nextLine()
+        var teamName = scan.nextLine()
+
+        val playerList = userInfo.proGamerTeam(teamName)
+        println("Team Name : $teamName")
+        for(i in playerList){
+            println("${i.gameID}")
+        }
 
     }
 
     fun menuFive(){
+        userInfo.divideGamer()
+        val nonProList = userInfo.nonProList
+        //println(nonProList)
+        for(i in nonProList){
+            println("${i.gameID}")
+        }
 
     }
 
@@ -68,10 +71,10 @@ class MenuPage {
         while(true){
             println("#########################")
             println("1. User Information")
-            println("2. Most Win User")
-            println("3. Highest WinRate User")
-            println("4. Game User Played")
-            println("5. Find User Team")
+            println("2. Descending Order by Win")
+            println("3. Descending Order by Win Rate")
+            println("4. Find Pro-Gamer")
+            println("5. Find Non-Pro-Gamer")
             println("0. Exit")
             println("#########################")
             print("Input menu number want to use : ")
@@ -80,7 +83,10 @@ class MenuPage {
 
             if(menuNum == 0){
                 break;
-            }else{
+            }else if(menuNum < 0 || menuNum > 5){
+                println("Wrong Menu Number. Input again")
+            }
+            else{
                 when(menuNum){
                     1 -> menuOne()
                     2 -> menuTwo()
