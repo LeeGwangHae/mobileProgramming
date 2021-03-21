@@ -64,7 +64,6 @@ class MenuPage {
     fun menuFive(){
         userInfo.divideGamer()
         val nonProList = userInfo.nonProList
-        //println(nonProList)
         for(i in nonProList){
             println("${i.gameID}")
         }
@@ -100,7 +99,5 @@ class MenuPage {
                 }
             }
         }// while finish
-
     }
-
 }
