@@ -45,14 +45,18 @@ class MenuPage {
     fun menuFour(){
         userInfo.divideGamer()
 
-        print("Input team : ")
+        print("Input team (T1, DK, GEN, BRO, NS, AF) : ")
         scan.nextLine()
         var teamName = scan.nextLine()
 
-        val playerList = userInfo.proGamerTeam(teamName)
-        println("Team Name : $teamName")
-        for(i in playerList){
-            println("${i.gameID}")
+        if(teamName == "T1" || teamName == "DK" || teamName == "GEN" || teamName == "BRO" || teamName == "NS" || teamName == "AF"){
+            val playerList = userInfo.proGamerTeam(teamName)
+            println("Team Name : $teamName")
+            for(i in playerList){
+                println("${i.gameID}")
+            }
+        }else{
+            println("No such Team name in data")
         }
 
     }
